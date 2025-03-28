@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import "../assets/styles/Service.scss";
-// import AOS from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
 import CustomModal from "../components/Modal";
+import API_Service from "../api/service";
 
 interface Item {
+  id: string;
   images: string[];
   title: string;
   description: string;
@@ -27,7 +30,7 @@ const Service: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Item[]>("https://your-api-endpoint.com/services");
+        const response = await axios.get<Item[]>(API_Service);
         setCarouselData(response.data);
       } catch (error) {
         console.error("Lỗi khi lấy dữ liệu:", error.message || error);

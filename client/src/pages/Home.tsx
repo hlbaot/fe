@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../assets/styles/Home.scss";
-import "../assets/styles/Contact.scss";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import axios from "axios";
-
-// const slides: string[] = [
-//     "https://i.pinimg.com/474x/03/8b/dd/038bdd199938e8997091788f05fc7a22.jpg",
-//     "https://i.pinimg.com/474x/03/8b/dd/038bdd199938e8997091788f05fc7a22.jpg",
-//     "https://i.pinimg.com/736x/67/85/c7/6785c7c3f78987b5d9835d67975f03f3.jpg",
-//     "https://i.pinimg.com/736x/67/85/c7/6785c7c3f78987b5d9835d67975f03f3.jpg",
-//     "https://i.pinimg.com/236x/ed/fb/0f/edfb0f6332ad1f2e3471620ab6095f57.jpg",
-// ];
-
+import API_Home from "../api/home";
 interface Image {
-    image: string;
+    images: string;
+    id: string;
 }
 
 const Home: React.FC = () => {
@@ -27,7 +19,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get<Image[]>("https://your-api-endpoint.com/images");
+                const response = await axios.get<Image[]>(API_Home);
                 setDataimg(response.data);
             } catch (error) {
                 console.error("Lỗi khi lấy dữ liệu:", error);
@@ -64,11 +56,11 @@ const Home: React.FC = () => {
 
                 <div className="container">
                     <div id="slide">
-                        {dataimg.map((item, index) => (
+                        {dataimg.map((item) => (
                             <div
-                                key={index}
+                                key={item.id}
                                 className="item"
-                                style={{ backgroundImage: `url(${item.image})` }}
+                                style={{ backgroundImage: `url(${item.images})` }}
                             />
                         ))}
                     </div>

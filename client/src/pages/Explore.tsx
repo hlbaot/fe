@@ -35,7 +35,7 @@ const Explore: React.FC<ExploreProps> = () => {
                         <h1 className="text-black text-2xl font-bold text-center">
                             Nơi lưu giữ khoảnh khắc trọn vẹn!
                         </h1>
-                        <div className="py-[2rem] px-[1rem]">
+                        <div className="text-center">
                             {texts.map((text, index) => (
                                 <p
                                     key={index}
