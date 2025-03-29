@@ -1,19 +1,22 @@
-import { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "aos/dist/aos.css";
 import "../assets/styles/Service.scss";
 import AOS from "aos";
-import "aos/dist/aos.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
 import CustomModal from "../components/Modal";
 import API_Service from "../api/service";
+
 
 interface Item {
   id: string;
   images: string[];
   title: string;
   description: string;
+  price: number;  
 }
+
 
 const Service: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -23,9 +26,15 @@ const Service: React.FC = () => {
   const handleOpen = (service: Item) => {
     setSelectedService(service);
     setOpen(true);
+    // console.log(open);
   };
 
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,6 +69,7 @@ const Service: React.FC = () => {
                         className="h-[230px] w-[160px] object-cover rounded-lg md:rounded-none hidden md:block"
                         src={item.images[1]}
                         alt={`Slide ${index + 1} - Image 2`}
+                        data-aos="fade-up"
                       />
                     )}
                     {item.images.length > 0 && (
@@ -67,6 +77,7 @@ const Service: React.FC = () => {
                         className="h-[350px] w-[250px] object-cover rounded-lg md:rounded-none"
                         src={item.images[0]}
                         alt={`Slide ${index + 1} - Image 1`}
+                        data-aos="fade-down"
                       />
                     )}
                     {item.images.length > 2 && (
@@ -74,8 +85,10 @@ const Service: React.FC = () => {
                         className="h-[230px] w-[160px] object-cover rounded-lg md:rounded-none hidden md:block"
                         src={item.images[2]}
                         alt={`Slide ${index + 1} - Image 3`}
+                        data-aos="fade-up"
                       />
                     )}
+
                   </div>
                 </div>
 
@@ -89,9 +102,10 @@ const Service: React.FC = () => {
                   <div className="p-5 flex items-center justify-center">
                     <button
                       onClick={() => handleOpen(item)}
-                      className="px-4 py-2 text-sm font-semibold text-black bg-white shadow-md rounded-full transition-all duration-300 ease-in-out hover:bg-green-500 hover:text-white transform hover:translate-y-0 active:translate-y-1 focus:outline-none"
+                      className="px-4 py-2 text-sm font-semibold text-black bg-white rounded-full  hover:bg-green-500 hover:text-white transform hover:translate-y-0 active:translate-y-1 focus:outline-none"
                     >
                       Xem chi tiết
+                      
                     </button>
                   </div>
                 </div>
@@ -100,7 +114,8 @@ const Service: React.FC = () => {
           ))}
         </Carousel>
       </div>
-      {selectedService && <CustomModal open={open} handleClose={handleClose} service={selectedService} />}
+      {selectedService && <CustomModal open={open} handleClose={handleClose} serviceData={selectedService} />
+    }
     </section>
   );
 };
