@@ -7,10 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node modules và build files
 node_modules
 dist
 dist-ssr
 *.local
+
+# Bỏ qua file .env để tránh lộ API key
+.env
 
 # Editor directories and files
 .vscode/*

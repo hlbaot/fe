@@ -1,4 +1,4 @@
-const API_Service = 'https://67e671d16530dbd31110075c.mockapi.io/api/service';
+const API_Service = import.meta.env.VITE_API_SERVICE;
 export default API_Service;
 
 // [

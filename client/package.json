@@ -20,6 +20,7 @@
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
+    "dotenv": "^16.4.7",
     "formik": "^2.4.6",
     "framer-motion": "^12.5.0",
     "react": "^19.0.0",
