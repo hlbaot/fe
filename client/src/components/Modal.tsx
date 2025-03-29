@@ -62,7 +62,7 @@ interface FormValues {
               
               <div className="left w-[65%] h-full flex flex-col gap-2">
                 
-                <div className="main-image-container flex flex-row items-center gap-2 h-[70%]">
+                <div className="main-image-container flex flex-col-reverse md:flex-row items-center gap-2 h-[70%]">
                   <img
                     className="main-image w-[50%] h-[350px] rounded-lg object-cover"
                     src={selectedImage}
