@@ -112,7 +112,7 @@ const Head: React.FC = () => {
                         </div>
                     )}
                 </div>
-                <button onClick={() => handleScroll("service")} className="btn text-white">
+                <button onClick={() => handleScroll("service")} className="btn">
                     Book Now !
                 </button>
             </div>

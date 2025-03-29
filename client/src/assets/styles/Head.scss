@@ -1,140 +1,141 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .head {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: none;
-  padding: 2rem 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.6);
-  .logo {
-      h1 {
-          color: white;
-      }
-  }
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: none;
+    padding: 2rem 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
 
-  .nav_bar {
-      .nav_list {
-          padding: 5px 18px;
-          border-radius: 8px;
-          margin: 0;
-          list-style: none;
+    .logo {
+        h1 {
+            color: white;
+        }
+    }
 
-          li {
-              position: relative;
-              font-size: 24px;
-              font-family: 'Dancing Script', cursive;
-              transition: color 0.3s ease;
-              color: white;
+    .nav_bar {
+        .nav_list {
+            padding: 5px 18px;
+            border-radius: 8px;
+            margin: 0;
+            list-style: none;
 
-              &::after {
-                  content: "";
-                  position: absolute;
-                  left: 50%;
-                  bottom: -5px;
-                  width: 0;
-                  height: 2px;
-                  background-color: rgb(255, 255, 255);
-                  transition: all 0.3s ease;
-                  transform: translateX(-50%);
-              }
+            li {
+                position: relative;
+                font-size: 24px;
+                font-family: 'Dancing Script', cursive;
+                transition: color 0.3s ease;
+                color: white;
 
-              &:hover {
-                  color: #ff4800;
-                  cursor: pointer;
-              }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    bottom: -5px;
+                    width: 0;
+                    height: 2px;
+                    background-color: rgb(255, 255, 255);
+                    transition: all 0.3s ease;
+                    transform: translateX(-50%);
+                }
 
-              &:hover::after {
-                  width: 100%;
-              }
-          }
-      }
+                &:hover {
+                    color: #ff4800;
+                    cursor: pointer;
+                }
 
-      @media (min-width: 768px) {
-          .nav_list {
-              display: flex;
-              gap: 3rem;
-          }
-      }
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        }
 
-      @media (max-width: 767px) {
-          .nav_list {
-              display: none;
-              position: absolute;
-              top: 100%;
-              left: 0;
-              width: 100%;
-              background: rgba(0, 0, 0, 0.9);
-              padding: 1rem 0;
+        @media (min-width: 768px) {
+            .nav_list {
+                display: flex;
+                gap: 3rem;
+            }
+        }
 
-              &.mobile-open {
-                  display: block;
-              }
+        @media (max-width: 767px) {
+            .nav_list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
 
-              li {
-                  padding: 1rem;
-                  text-align: center;
-              }
-          }
-      }
-  }
+                &.mobile-open {
+                    display: block;
+                }
 
-  .btn {
-      font-size: 17px;
-      background: transparent;
-      border: none;
-      
-      padding: 3px 5px;
-      position: relative;
-      transition: 0.5s ease;
-      cursor: pointer;
+                li {
+                    padding: 1rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
 
-      &::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          height: 2px;
-          width: 0;
-          background-color: #ffffff;
-          transition: 0.5s ease;
-      }
+    .btn {
+        font-size: 17px;
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 3px 5px;
+        position: relative;
+        transition: 0.5s ease;
+        cursor: pointer;
 
-      &:hover {
-          color: #000000;
-          transition-delay: 0.2s;
-      }
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0;
+            background-color: #ffffff;
+            transition: 0.5s ease;
+        }
 
-      &:hover::before {
-          width: 100%;
-      }
+        &:hover {
+            color: #000000;
+            transition-delay: 0.2s;
+        }
 
-      &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          height: 0;
-          width: 100%;
-          background-color: #ffffff;
-          transition: 0.2s ease;
-          z-index: -1;
-      }
+        &:hover::before {
+            width: 100%;
+        }
 
-      &:hover::after {
-          height: 100%;
-          transition-delay: 0.3s;
-      }
-  }
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 0;
+            width: 100%;
+            background-color: #ffffff;
+            transition: 0.2s ease;
+            z-index: -1;
+        }
+
+        &:hover::after {
+            height: 100%;
+            transition-delay: 0.3s;
+        }
+    }
 }
