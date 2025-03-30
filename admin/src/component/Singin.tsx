@@ -1,8 +1,11 @@
 import React from 'react'
+import '../assets/styles/Signin.scss';
 
 function Singin() {
   return (
-    <div>Singin</div>
+    <section className='formSignin'>
+      
+    </section>
   )
 }
 
