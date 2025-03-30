@@ -2,15 +2,26 @@ const Evalutes = require('../services/evalute.service');
 
 
 class EvaluteController{
-    static async createComment(req, res){
+    static async createComment(req, res) {
         try {
-            const comment = await Evalutes.writeComment(req.body.email, req.body.comment);
-            if(comment) return res.status(400).json({success: false, message: 'Điền thiếu thông tin'});
-            return res.status(201).json({success: true, message: 'Gửi đánh giá thành công!', data: comment});
+          const { email, message, rating } = req.body;
+          const result = await Evalutes.writeComment(email, message, rating);
+      
+          // Kiểm tra nếu result là thông báo lỗi
+          if (result.success === false) {
+            return res.status(400).json(result);
+          }
+      
+          // Trường hợp thành công
+          return res.status(201).json({
+            success: true,
+            message: 'Gửi đánh giá thành công!',
+            data: result
+          });
         } catch (error) {
-            return res.status(500).json({success: false, message: error.message});
+          return res.status(500).json({ success: false, message: error.message });
         }
-    };
+      }
 
     static async getComment(){
         try {

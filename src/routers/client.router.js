@@ -13,6 +13,6 @@ router.get("/package/:id", PackageController.getPackageById);
 router.post("/booking/:package_id", createBooking);
 
 //Comment router
-router.post("/comment", authenticate, createComment);
+router.post("/comment", createComment);
 
 module.exports = router;

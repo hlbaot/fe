@@ -1,12 +1,15 @@
 const Evalutes = require("../models/Evalutes.model");
 
 class EvaluteService {
-  static async writeComment(email, comment) {
+  static async writeComment(email, message, rating) {
     try {
-      const comments = await Evalutes.create({email, comment});
+      if (!email || !rating) {
+        return { success: false, message: 'Điền thiếu thông tin (email và rating là bắt buộc)' };
+      }
+      const comments = await Evalutes.create({ email, message, rating });
       return comments;
     } catch (error) {
-      // console.error(error);
+      console.error(error);
       throw new Error(error.message);
     }
   }

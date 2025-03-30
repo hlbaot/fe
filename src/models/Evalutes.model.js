@@ -11,8 +11,16 @@ const Evalute = sequelize.define('Evalutes', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    comment: {
+    message: {
         type: DataTypes.STRING
+    },
+    rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            min:1,
+            max:5
+        }
     }
 },{
     tableName: 'Evalutes',
