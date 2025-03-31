@@ -6,7 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import API_Signin from '../api/signin';
 
-function Signin({ onLogin }) {
+function Signin() {
   const navigate = useNavigate();
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -19,7 +19,7 @@ function Signin({ onLogin }) {
       if (res.data.token) {
         sessionStorage.setItem('token', res.data.token);
         navigate('/admin');
-        onLogin();
+        
 
         Swal.fire({
           icon: 'success',
