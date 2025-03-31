@@ -12,7 +12,7 @@ function Signin({onLogin}) {
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       const res = await axios.post(API_Signin ,{
-        account: values.account,
+        username: values.username,
         password: values.password,
       });
 
@@ -53,11 +53,11 @@ function Signin({onLogin}) {
     <section className="formSignin">
       <div className="login-box">
         <p>Login Admin</p>
-        <Formik initialValues={{ account: '', password: '' }} onSubmit={onSubmit}>
+        <Formik initialValues={{ username: '', password: '' }} onSubmit={onSubmit}>
           {({ isSubmitting }) => (
             <Form>
               <div className="user-box">
-                <Field type="text" name="account" required />
+                <Field type="text" name="username" required />
                 <label>Account</label>
               </div>
               <div className="user-box">
