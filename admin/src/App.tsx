@@ -12,14 +12,14 @@ function App() {
   };
 
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/login" element={<SignIn onLogin={handleLogin} />} />
-    //     <Route path="/admin" element={isLoggedIn ? <Admin /> : <Navigate to="/login" />} />
-    //     <Route path="*" element={<Navigate to="/login" />} />
-    //   </Routes>
-    // </BrowserRouter>
-    <Admin/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<SignIn onLogin={handleLogin} />} />
+        <Route path="/admin/*" element={isLoggedIn ? <Admin /> : <Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
