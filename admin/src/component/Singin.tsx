@@ -5,7 +5,7 @@ function Singin() {
   return (
     <section className='formSignin'>
       <div className="login-box">
-        <p>Login</p>
+        <p>Login Admin</p>
         <form>
           <div className="user-box">
             <input required  type="text" />
