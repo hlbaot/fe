@@ -18,15 +18,15 @@ function Signin() {
 
       if (res.data.token) {
         sessionStorage.setItem('token', res.data.token);
-        navigate('/admin');
         
-
         Swal.fire({
           icon: 'success',
           title: 'Đăng nhập thành công',
           text: 'Welcome back!',
           timer: 2000,
           showConfirmButton: false,
+        }).then(() => {
+          navigate('/admin'); // Điều hướng sau khi hiển thị thông báo
         });
 
       } else {
