@@ -18,7 +18,8 @@ function Signin({ onLogin }) {
 
       if (res.data.token) {
         sessionStorage.setItem('token', res.data.token);
-        onLogin(); 
+        navigate('/admin');
+        onLogin();
 
         Swal.fire({
           icon: 'success',
@@ -28,9 +29,6 @@ function Signin({ onLogin }) {
           showConfirmButton: false,
         });
 
-        setTimeout(() => {
-          navigate('/admin'); 
-        }, 2000);
       } else {
         Swal.fire({
           icon: 'error',
