@@ -6,29 +6,30 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import API_Signin from '../api/signin';
 
-function Signin({onLogin}) {
+function Signin({ onLogin }) {
   const navigate = useNavigate();
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      const res = await axios.post(API_Signin ,{
+      const res = await axios.post(API_Signin, {
         username: values.username,
         password: values.password,
       });
 
       if (res.data.token) {
-        sessionStorage.setItem('token:', res.data.token);
+        sessionStorage.setItem('token', res.data.token);
+        onLogin(); 
 
         Swal.fire({
           icon: 'success',
           title: 'Đăng nhập thành công',
           text: 'Welcome back!',
-          timer: 2000, 
+          timer: 2000,
           showConfirmButton: false,
         });
 
         setTimeout(() => {
-          navigate('/admin');
+          navigate('/admin'); 
         }, 2000);
       } else {
         Swal.fire({
@@ -41,7 +42,7 @@ function Signin({onLogin}) {
       Swal.fire({
         icon: 'error',
         title: 'Đăng nhập thất bại',
-        text: 'Tài khoản hoặc mật khẩu sai !',
+        text: 'Tài khoản hoặc mật khẩu sai!',
       });
       console.error(error);
     } finally {
