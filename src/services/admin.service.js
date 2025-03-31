@@ -27,7 +27,21 @@ class User {
         } catch (error) {
             throw new Error(error.message);
         }
-    }    
+    };
+    static async logout(session){
+        try {
+            if(!session) throw new Error('Khong co session');
+            return new Promise((resolve, reject)=>{
+                session.destroy((err)=>{
+                    if(err) return reject(new Error('Lỗi khi xóa session!'));
+                    resolve('Đăng xuất thành công');
+                })
+
+            })
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
 }
 
 module.exports = User;

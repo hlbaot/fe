@@ -12,3 +12,15 @@ exports.login = async(req, res)=>{
     }
 }
 
+exports.logout = async(req, res)=>{
+    try {
+        const response = await Users.logout(req.session);
+        res.clearCookie("connect.sid"); // Xóa cookie session nếu có
+        return res.json(response);
+    } catch (error) {
+        return res.status(500).json({success: false, message: error.message});
+    }
+};
+
+
+

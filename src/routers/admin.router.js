@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { login } = require("../controllers/admin.controller");
+const { login, logout } = require("../controllers/admin.controller");
 const { authenticate, checkAdmin } = require("../middlewares/auth.middleware");
 const PackageController = require("../controllers/package.controller");
 const { createProduct } = require("../controllers/product.controller");
@@ -9,6 +9,9 @@ const {getComment, deleteComment} = require("../controllers/evalute.controller")
 
 //Login Router
 router.post("/login", login);
+
+//Logout Router
+router.post('/logout', logout);
 
 //Booking Router
 router.get("/customer", authenticate, checkAdmin, BookingController.getAllBookings);
