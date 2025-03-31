@@ -5,7 +5,7 @@ import SignIn from './component/Singin';
 import Admin from './layouts/Admin';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
