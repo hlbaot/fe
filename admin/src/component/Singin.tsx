@@ -6,7 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import API_Signin from '../api/signin';
 
-function Signin() {
+function Signin({ onLogin }) {
   const navigate = useNavigate();
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -18,15 +18,15 @@ function Signin() {
 
       if (res.data.token) {
         sessionStorage.setItem('token', res.data.token);
-        
+        navigate('/admin');
+        onLogin();
+
         Swal.fire({
           icon: 'success',
           title: 'Đăng nhập thành công',
           text: 'Welcome back!',
           timer: 2000,
           showConfirmButton: false,
-        }).then(() => {
-          navigate('/admin'); // Điều hướng sau khi hiển thị thông báo
         });
 
       } else {
