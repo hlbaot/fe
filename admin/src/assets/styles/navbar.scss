@@ -1,0 +1,22 @@
+.navbar{
+    width: 20%;
+    height: 100vh;
+    background-color: rgb(212, 212, 212);
+    .head, .footer{
+        width: 100%;
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        li{
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+            background-color: rgb(51, 255, 0);
+        }
+        li:hover{
+            cursor: pointer;
+        }
+    }
+
+}

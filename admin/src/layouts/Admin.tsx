@@ -8,11 +8,11 @@ function Admin() {
   return (
     <div className='admin'>
       <Navbar />
-      {/* <div className="main">
-        <Routes>
+      <div className="main">
+        {/* <Routes>
           <Route path="/" element={<ManagerHome/>} />
-        </Routes>
-      </div> */}
+        </Routes> */}
+      </div>
     </div>
   )
 }
