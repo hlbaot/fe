@@ -13,10 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({
-    origin: '*',
+    origin: "*",
     methods: "GET, POST, PUT, DELETE",
     credentials: true,
-    allowedHeaders: "Content-Type,Authorization",
 }));
 
 app.use(
@@ -40,7 +39,7 @@ router(app);
 
         // Start server after DB connection is successful
         app.listen(port, '0.0.0.0', () => {
-            console.log(`🚀Server running at http://0.0.0.0:${port}`);
+            console.log(`🚀Server running at http://192.168.15.98:${port}`);
         });
     } catch (error) {
         console.error(`❌ Không thể kết nối MySQL: ${error.message}`);

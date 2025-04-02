@@ -10,7 +10,7 @@ const { createComment } = require("../controllers/evalute.controller");
 router.get("/package/:id", PackageController.getPackageById);
 
 //Booking router
-router.post("/booking/:package_id", createBooking);
+router.post("/:package_id", createBooking);
 
 //Comment router
 router.post("/comment", createComment);

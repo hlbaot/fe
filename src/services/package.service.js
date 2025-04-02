@@ -27,6 +27,8 @@ class PackageService {
     try {
       if (!packageId) throw new Error("Thiếu ID gói dịch vụ");
 
+      const isAdmin = true;
+
       const attributes = isAdmin
         ? ["id", "name", "price", "description", "createdAt", "updatedAt"]
         : ["id", "name", "price", "description"];
