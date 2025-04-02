@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '../assets/styles/Signin.scss';
 import { Formik, Form, Field } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import API_Signin from '../api/signin';
 
 function Signin({ onLogin }) {
-  const navigate = useNavigate();
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
@@ -18,14 +16,13 @@ function Signin({ onLogin }) {
 
       if (res.data.token) {
         sessionStorage.setItem('token', res.data.token);
-        navigate('/admin');
         onLogin();
 
         Swal.fire({
           icon: 'success',
           title: 'Đăng nhập thành công',
           text: 'Welcome back!',
-          timer: 2000,
+          timer: 1500,
           showConfirmButton: false,
         });
 
