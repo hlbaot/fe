@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '../assets/styles/Signin.scss';
 import { Formik, Form, Field } from 'formik';
 import API_Signin from '../api/signin';
 
-function Signin({ onLogin }) {
+interface SigninProps {
+  onLogin: () => void; 
+}
 
-  const onSubmit = async (values, { setSubmitting }) => {
+const Signin: React.FC<SigninProps> = ({ onLogin }) => {
+  const onSubmit = async (values: { username: string; password: string; }, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     try {
       const res = await axios.post(API_Signin, {
         username: values.username,
@@ -73,6 +76,6 @@ function Signin({ onLogin }) {
       </div>
     </section>
   );
-}
+};
 
 export default Signin;

@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/navbar.scss'
-import handleLogout from '../hook/logout';
-function Navbar() {
+import '../assets/styles/navbar.scss';
+
+const Navbar: React.FC = () => {
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    window.location.href = '/login'
+  }
   return (
     <div className='navbar'>
       <div className="head">
@@ -11,30 +15,23 @@ function Navbar() {
       <ul>
         <Link to="/home">
           <li>
-            <p>
-              Quản lí home
-            </p>
+            Quản lí home
           </li>
         </Link>
         <Link to="/client">
           <li>
-            <p>
-              Quản lí khách hàng
-            </p>
+            Quản lí khách hàng
+
           </li>
         </Link>
         <Link to="/service">
           <li>
-            <p>
-              Quản lí gói dịch vụ
-            </p>
+            Quản lí gói dịch vụ
           </li>
         </Link>
         <Link to="/feedback">
           <li>
-            <p>
-              Quản lí đánh giá
-            </p>
+            Quản lí đánh giá
           </li>
         </Link>
       </ul>
@@ -42,7 +39,7 @@ function Navbar() {
         <p className='text-center'>Logout</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

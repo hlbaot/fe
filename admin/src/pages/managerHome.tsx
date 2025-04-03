@@ -1,10 +1,15 @@
 import React from 'react'
 import '../assets/styles/managerHome.scss'
+import styled from 'styled-components';
+import ButtonAdd from '../ui/add';
 
-function ManagerHome() {
+const ManagerHome: React.FC = () => {
   return (
     <div className='mngHome'>
-        đây là trang quản lí home client
+      <div className="card" />
+      <div className="btn-add">
+        <ButtonAdd />
+      </div>
     </div>
   )
 }
