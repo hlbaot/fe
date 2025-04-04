@@ -21,7 +21,6 @@ const Navbar: React.FC = () => {
         <Link to="/client">
           <li>
             Quản lí khách hàng
-
           </li>
         </Link>
         <Link to="/service">
