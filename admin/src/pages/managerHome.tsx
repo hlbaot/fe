@@ -34,23 +34,26 @@ const ManagerHome: React.FC = () => {
   };
 
   return (
-    <div className="mngHome">
-      <div className="flex gap-4">
-        {images.map((img, idx) => (
-          <div key={idx} className="card">
-            <img src={img.url} alt={`upload-${idx}`} />
-            <button
-              onClick={() => handleDelete(img.public_id)}
-              className="delete-btn"
-              title="Xóa ảnh"
-            >
-              −
-            </button>
-          </div>
-        ))}
-      </div>
-      <div className="btn-add">
-        <ButtonAdd onImageUpload={handleUpload} />
+    <div className='realtive'>
+      <h1 className='text-2xl font-bold text-center py-2'>Quản lí home</h1>
+      <div className="mngHome">
+        <div className="flex gap-4 p-2 flex-wrap">
+          {images.map((img, idx) => (
+            <div key={idx} className="card">
+              <img src={img.url} alt={`upload-${idx}`} />
+              <button
+                onClick={() => handleDelete(img.public_id)}
+                className="delete-btn"
+                title="Xóa ảnh"
+              >
+                −
+              </button>
+            </div>
+          ))}
+        </div>
+        <div className="absolute right-8 bottom-8">
+          <ButtonAdd onImageUpload={handleUpload} />
+        </div>
       </div>
     </div>
   );

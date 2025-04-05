@@ -9,8 +9,11 @@ const Navbar: React.FC = () => {
   }
   return (
     <div className='navbar'>
-      <div className="head">
-        <h1 className='p-4 text-[23px] text-center font-bold'>Menu Admin</h1>
+      <div className="w-[100%] bg-black m-[5px] rounded-[30px]">
+        <h1 className='p-4 text-[23px] text-center text-white font-bold'>Menu Admin</h1>
+      </div>
+      <div>
+
       </div>
       <ul>
         <Link to="/home">
@@ -34,9 +37,14 @@ const Navbar: React.FC = () => {
           </li>
         </Link>
       </ul>
-      <div onClick={handleLogout} className="footer bg-red-300 py-2 py-4 hover:cursor-pointer">
-        <p className='text-center'>Logout</p>
+      <div
+        onClick={handleLogout}
+        className="w-full bg-black m-[5px] rounded-[30px] hover:cursor-pointer flex items-center justify-center gap-2"
+      >
+        <i className="fa-solid fa-right-from-bracket text-white"></i>
+        <p className="p-4 text-center text-white">Logout</p>
       </div>
+
     </div>
   );
 }

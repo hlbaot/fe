@@ -3,7 +3,10 @@ import React from 'react'
 function ManagerClient() {
   return (
     <div>
-      Đây là trang quản lí client
+      <h1 className='text-2xl font-bold text-center py-2'>Quản lí khách hàng</h1>
+      <div className='mngClient'>
+
+      </div>
     </div>
   )
 }

@@ -1,8 +1,6 @@
 .mngHome {
-    position: relative;
     width: 100%;
     height: 100vh;
-  
     .card {
       position: relative;
       width: 190px;
@@ -41,7 +39,7 @@
         cursor: pointer;
   
         &:hover {
-          background-color: darkred;
+          background-color: rgb(153, 2, 2);
         }
       }
   
@@ -51,14 +49,9 @@
     }
   
     .card:hover {
-      border: #006fff 0.2em solid;
+      border: #000000 0.2em solid;
       cursor: pointer;
     }
   
-    .btn-add {
-      position: absolute;
-      right: 2rem;
-      bottom: 2rem;
-    }
   }
   
