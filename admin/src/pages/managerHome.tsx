@@ -6,7 +6,6 @@ import '../assets/styles/managerHome.scss';
 const ManagerHome: React.FC = () => {
   const [images, setImages] = useState<{ url: string; public_id: string }[]>([]);
 
-  // Lấy ảnh từ localStorage khi component được mount
   useEffect(() => {
     const storedImages = localStorage.getItem('images');
     if (storedImages) {
@@ -15,7 +14,6 @@ const ManagerHome: React.FC = () => {
   }, []);
 
   const handleUpload = (img: { url: string; public_id: string }) => {
-    // Thêm ảnh vào state
     const updatedImages = [...images, img];
     setImages(updatedImages);
 

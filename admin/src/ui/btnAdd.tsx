@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import axios from 'axios';
-
+import API_HOME_CLOUD from '../api/upImgCloud';
 interface ButtonAddProps {
   onImageUpload: (img: { url: string; public_id: string }) => void;
 }
@@ -18,7 +18,7 @@ const ButtonAdd: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
     formData.append("cloud_name", "djpujlimr");
     try {
       const res = await axios.post(
-        'https://api.cloudinary.com/v1_1/djpujlimr/image/upload',
+        API_HOME_CLOUD,
         formData
       );
 
