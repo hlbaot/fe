@@ -17,7 +17,6 @@ const ManagerHome: React.FC = () => {
     const updatedImages = [...images, img];
     setImages(updatedImages);
 
-    // Lưu lại danh sách ảnh vào localStorage
     localStorage.setItem('images', JSON.stringify(updatedImages));
   };
 
