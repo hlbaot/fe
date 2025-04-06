@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import axios from "axios";
 import API_Home from "../api/home";
+
 interface Image {
     img: string;
     id: string;

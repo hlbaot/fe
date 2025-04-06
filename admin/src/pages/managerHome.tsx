@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import ButtonAdd from '../ui/btnAdd';
+import Swal from 'sweetalert2';
 import '../assets/styles/managerHome.scss';
 
 const ManagerHome: React.FC = () => {
@@ -18,6 +19,13 @@ const ManagerHome: React.FC = () => {
     setImages(updatedImages);
 
     localStorage.setItem('images', JSON.stringify(updatedImages));
+    Swal.fire({
+      title: 'Tải ảnh thành công!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      timer: 2000,
+      draggable: true,
+    });
   };
 
   const handleDelete = async (public_id: string) => {
@@ -28,16 +36,30 @@ const ManagerHome: React.FC = () => {
       setImages(updatedImages);
 
       localStorage.setItem('images', JSON.stringify(updatedImages));
+      Swal.fire({
+        title: 'Xóa ảnh thành công!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        timer: 2000,
+        draggable: true,
+      });
     } catch (error) {
-      console.error('Xóa ảnh thất bại', error);
+      Swal.fire({
+        title: 'Xóa ảnh thất bại!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        timer: 2000,
+        draggable: true,
+      });
     }
   };
 
   return (
     <div className='realtive'>
-      <h1 className='text-2xl font-bold text-center py-2'>Quản lí home</h1>
+      
       <div className="mngHome">
-        <div className="flex gap-4 p-2 flex-wrap">
+      <h1 className='w-full bg-white z-10 text-4xl font-bold text-center py-2 sticky top-0'>Quản lí home</h1>
+        <div className="flex gap-4 p-2 flex-wrap z-0">
           {images.map((img, idx) => (
             <div key={idx} className="card">
               <img src={img.url} alt={`upload-${idx}`} />
