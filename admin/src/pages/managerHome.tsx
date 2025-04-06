@@ -29,50 +29,66 @@ const ManagerHome: React.FC = () => {
   };
 
   const handleDelete = async (public_id: string) => {
-    try {
-      await axios.post('http://localhost:3001/delete-image', { public_id });
+    const result = await Swal.fire({
+      title: "Bạn chắc chắn muốn xóa?",
+      text: "Hành động này không thể hoàn tác!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Xóa!",
+      cancelButtonText: "Hủy"
+    });
 
-      const updatedImages = images.filter(img => img.public_id !== public_id);
-      setImages(updatedImages);
+    if (result.isConfirmed) {
+      try {
+        await axios.post('http://localhost:3001/delete-image', { public_id });
 
-      localStorage.setItem('images', JSON.stringify(updatedImages));
-      Swal.fire({
-        title: 'Xóa ảnh thành công!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-        timer: 2000,
-        draggable: true,
-      });
-    } catch (error) {
-      Swal.fire({
-        title: 'Xóa ảnh thất bại!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-        timer: 2000,
-        draggable: true,
-      });
+        const updatedImages = images.filter(img => img.public_id !== public_id);
+        setImages(updatedImages);
+
+        localStorage.setItem('images', JSON.stringify(updatedImages));
+        Swal.fire({
+          title: 'Xóa ảnh thành công!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          timer: 2000,
+        });
+      } catch (error) {
+        Swal.fire({
+          title: 'Xóa ảnh thất bại!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          timer: 2000,
+        });
+      }
     }
   };
 
+
   return (
     <div className='realtive'>
-      
       <div className="mngHome">
-      <h1 className='w-full bg-white z-10 text-4xl font-bold text-center py-2 sticky top-0'>Quản lí home</h1>
+        <h1 className='w-full bg-white z-10 text-2xl font-bold text-center py-2 sticky top-0'>Quản lí home</h1>
         <div className="flex gap-4 p-2 flex-wrap z-0">
-          {images.map((img, idx) => (
-            <div key={idx} className="card">
-              <img src={img.url} alt={`upload-${idx}`} />
-              <button
-                onClick={() => handleDelete(img.public_id)}
-                className="delete-btn"
-                title="Xóa ảnh"
-              >
-                −
-              </button>
-            </div>
-          ))}
+          {images.length === 0 ? (
+            <p className="w-full text-center py-4">Chưa có ảnh nào</p>
+          ) : (
+            images.map((img, idx) => (
+              <div key={idx} className="card">
+                <img src={img.url} alt={`upload-${idx}`} />
+                <button
+                  onClick={() => handleDelete(img.public_id)}
+                  className="delete-btn"
+                  title="Xóa ảnh"
+                >
+                  −
+                </button>
+              </div>
+            ))
+          )}
         </div>
+
         <div className="absolute right-8 bottom-8">
           <ButtonAdd onImageUpload={handleUpload} />
         </div>
