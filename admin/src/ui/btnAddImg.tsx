@@ -5,7 +5,7 @@ interface ButtonAddProps {
   onImageUpload: (img: { url: string; public_id: string }) => void;
 }
 
-const ButtonAdd: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
+const ButtonAddImg: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,4 +39,4 @@ const ButtonAdd: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
   );
 };
 
-export default ButtonAdd;
+export default ButtonAddImg;

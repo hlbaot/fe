@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   return (
     <div className='navbar'>
       <div className="w-[100%] bg-black m-[5px] rounded-[30px]">
-        <h1 className='p-4 text-[23px] text-center text-white font-bold'>Menu Admin</h1>
+        <h1 className='p-2 text-[23px] text-center text-white font-bold'>Menu Admin</h1>
       </div>
       <div>
 
@@ -39,10 +39,10 @@ const Navbar: React.FC = () => {
       </ul>
       <div
         onClick={handleLogout}
-        className="w-full bg-black m-[5px] rounded-[30px] hover:cursor-pointer flex items-center justify-center gap-2"
+        className="px-[3rem] bg-red-600 m-[5px] rounded-[30px] hover:cursor-pointer hover:bg-red-700 flex items-center justify-center gap-2"
       >
         <i className="fa-solid fa-right-from-bracket text-white"></i>
-        <p className="p-4 text-center text-white">Logout</p>
+        <p className="p-2 text-center text-white">Logout</p>
       </div>
 
     </div>

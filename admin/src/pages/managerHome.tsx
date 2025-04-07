@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import ButtonAdd from '../ui/btnAdd';
+import ButtonAdd from '../ui/btnAddImg';
 import Swal from 'sweetalert2';
 import '../assets/styles/managerHome.scss';
+import ButtonAddImg from '../ui/btnAddImg';
 
 const ManagerHome: React.FC = () => {
   const [images, setImages] = useState<{ url: string; public_id: string }[]>([]);
@@ -88,9 +89,8 @@ const ManagerHome: React.FC = () => {
             ))
           )}
         </div>
-
         <div className="absolute right-8 bottom-8">
-          <ButtonAdd onImageUpload={handleUpload} />
+          <ButtonAddImg onImageUpload={handleUpload} />
         </div>
       </div>
     </div>
