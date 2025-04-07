@@ -1,10 +1,16 @@
 class PackageDTO {
-    constructor(packageData) {
-        this.id = packageData.id;
-        this.name = packageData.name;
-        this.price = packageData.price;
-        this.description = packageData.description;
-    }
-}
+  constructor(pkg) {
+    this.id = pkg.id;
+    this.name = pkg.name;
+    this.price = pkg.price;
+    this.description = pkg.description;
 
-module.exports = PackageDTO;   
+    //Get sp cua package
+    if (pkg.Products || pkg.products) {
+      this.products = (pkg.Products || pkg.products).map((p) => ({
+        img: p.img,
+      }));
+    }
+  }
+}
+module.exports = PackageDTO;

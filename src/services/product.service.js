@@ -1,4 +1,4 @@
-const Products = require("../models/Product.model");
+ const Products = require("../models/Product.model");
 const ProductDTO = require("../DTO/product.dto");
 
 class ProductService {
@@ -14,6 +14,15 @@ class ProductService {
       return new ProductDTO(newProduct);
     } catch (error) {
       throw new Error(error.message);
+    }
+  }
+  
+  //Get ảnh home
+  static async getProduct(){
+    try {
+      const product = await Products.findAll()
+    } catch (error) {
+      
     }
   }
 }

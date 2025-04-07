@@ -1,13 +1,14 @@
 const Packages = require("../models/Package.model");
 const PackageDTO = require("../DTO/package.dto");
-
+const Product = require('../models/Product.model');
+const Package = require('../models/Package.model');
 class PackageService {
-  static async createPackage(params) {
+  static async createPackage(data) {
     try {
-      if (!params.name || !params.price || !params.description) {
+      if (!data.name || !data.price || !data.description) {
         throw new Error("Thiếu thông tin cần thiết!!");
       }
-      const newPackage = await Packages.create(params);
+      const newPackage = await Packages.create(data);
       return new PackageDTO(newPackage);
     } catch (error) {
       throw new Error(error.message);
@@ -33,7 +34,16 @@ class PackageService {
         ? ["id", "name", "price", "description", "createdAt", "updatedAt"]
         : ["id", "name", "price", "description"];
 
-      const foundPackage = await Packages.findByPk(packageId, { attributes });
+      // 👇 Thêm thiết lập quan hệ thủ công
+      Packages.hasMany(Product, { foreignKey: 'package_id' });
+      Product.belongsTo(Packages, { foreignKey: 'package_id' });
+      const foundPackage = await Packages.findByPk(packageId, { 
+                          attributes, 
+                          include: [{
+                            model: Product,
+                            attributes: ["img"]
+                          }] 
+      });
       if (!foundPackage) throw new Error("Không tìm thấy gói dịch vụ");
 
       return new PackageDTO(foundPackage);

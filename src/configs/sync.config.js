@@ -5,6 +5,7 @@ const Package = require('../models/Package.model');
 const Product = require('../models/Product.model');
 const Booking = require('../models/Booking.model');
 const Evalute = require('../models/Evalutes.model');
+const Slide = require('../models/Slides.model');
 const syncDatabase =  async () =>{
     try {
         await User.sync({force: false});
@@ -14,6 +15,7 @@ const syncDatabase =  async () =>{
         await Product.sync({alter: true});
         await Booking.sync({alter: true});
         await Evalute.sync({alter: true});
+        await Slide.sync({alter: true});
     } catch (error) {
         console.error('❌ Lỗi đồng bộ bảng:', error);
         console.error('Chi tiết lỗi:', error);
