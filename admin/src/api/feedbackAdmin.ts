@@ -1,0 +1,2 @@
+const API_FEEDBACK_ADMIN = import.meta.env.VITE_API_FEEDBACK_ADMIN;
+export default API_FEEDBACK_ADMIN;

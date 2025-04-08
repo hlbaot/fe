@@ -42,7 +42,7 @@ const ManagerFeedback: React.FC = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete('https://api.yourbackend.com/feedback', {
+          await axios.delete('API_DELETE', {
             data: { email }
           });
 
