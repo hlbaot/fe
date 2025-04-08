@@ -16,6 +16,6 @@ router.post("/:package_id", createBooking);
 router.post("/comment", createComment);
 
 //Slide router
-router.get("/get-slide", getSlide);
+router.get("/getSlide", getSlide);
 
 module.exports = router;

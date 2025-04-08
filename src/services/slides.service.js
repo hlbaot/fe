@@ -18,7 +18,7 @@ class SlideService {
   async getSlide() {
     try {
         const slides = await Slides.findAll({order: [["createdAt", "DESC"]]});
-        return new slideDTO(slides);
+        return slides.map(slide=>slide.img);
     } catch (error) {
         throw new Error(error.message);
     }

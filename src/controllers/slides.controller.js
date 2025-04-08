@@ -19,8 +19,9 @@
         async getSlide(req, res){
             try {
                 const slides = await SlideService.getSlide();
-                return res.status(200).json({message: 'Lấy thành công!', ...slides});
+                return res.status(200).json({message: 'Lấy thành công!', img: slides});
             } catch (error) {
+                console.error(error);
                 return res.status(500).json({message: error.message});
             }
         }
