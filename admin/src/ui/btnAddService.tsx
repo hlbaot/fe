@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const styleModal = {
   position: 'absolute',
@@ -33,10 +35,51 @@ const validationSchema = Yup.object({
   description: Yup.string().required('Mô tả là bắt buộc'),
 });
 
-const ButtonAddService: React.FC = () => {
+interface ButtonAddServiceProps {
+  onAddService: (newService: Values & { id: number }) => void; // Callback to pass new service to parent
+}
+
+const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = async (
+    values: Values,
+    { setSubmitting, resetForm }: FormikHelpers<Values>
+  ) => {
+    try {
+      const response = await axios.post('http://localhost:3000/service-packages', values);
+
+      const newService = response.data;
+
+      onAddService(newService);
+
+      // Show success message
+      Swal.fire({
+        title: 'Thành công!',
+        text: 'Gói dịch vụ đã được tạo thành công.',
+        icon: 'success',
+        timer: 1500,
+        confirmButtonText: 'OK',
+      });
+
+      // Reset the form and close the modal
+      resetForm();
+      handleClose();
+    } catch (error) {
+      console.error('Lỗi khi tạo gói dịch vụ:', error);
+      Swal.fire({
+        title: 'Lỗi!',
+        text: 'Có lỗi xảy ra khi tạo gói dịch vụ!',
+        icon: 'error',
+        timer: 1500,
+        confirmButtonText: 'OK',
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -45,6 +88,9 @@ const ButtonAddService: React.FC = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{
+          zIndex: 1000,
+        }}
       >
         <Box sx={styleModal}>
           <h1 className="text-center font-bold text-xl">Nhập thông tin gói mới</h1>
@@ -55,14 +101,9 @@ const ButtonAddService: React.FC = () => {
               description: '',
             }}
             validationSchema={validationSchema}
-            onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 500);
-            }}
-            validateOnBlur={false} 
-            validateOnChange={false} 
+            onSubmit={handleSubmit}
+            validateOnBlur={false}
+            validateOnChange={false}
           >
             {({ errors }) => (
               <Form className="space-y-6 mt-4">
@@ -70,7 +111,9 @@ const ButtonAddService: React.FC = () => {
                   <div className="w-1/2">
                     <label
                       htmlFor="namePacket"
-                      className={`block text-sm font-medium mb-1 ${errors.namePacket ? 'text-red-600' : ''}`}
+                      className={`block text-sm font-medium mb-1 ${
+                        errors.namePacket ? 'text-red-600' : ''
+                      }`}
                     >
                       Tên gói
                     </label>
@@ -78,8 +121,9 @@ const ButtonAddService: React.FC = () => {
                       id="namePacket"
                       name="namePacket"
                       placeholder="Nhập tên gói"
-                      className={`w-full border ${errors.namePacket ? 'border-red-500' : 'border-gray-300'
-                        } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
+                      className={`w-full border ${
+                        errors.namePacket ? 'border-red-500' : 'border-gray-300'
+                      } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
                       name="namePacket"
@@ -91,7 +135,9 @@ const ButtonAddService: React.FC = () => {
                   <div className="w-1/2">
                     <label
                       htmlFor="pricePacket"
-                      className={`block text-sm font-medium mb-1 ${errors.pricePacket ? 'text-red-600' : ''}`}
+                      className={`block text-sm font-medium mb-1 ${
+                        errors.pricePacket ? 'text-red-600' : ''
+                      }`}
                     >
                       Giá gói
                     </label>
@@ -100,8 +146,9 @@ const ButtonAddService: React.FC = () => {
                       name="pricePacket"
                       placeholder="0"
                       type="number"
-                      className={`w-full border ${errors.pricePacket ? 'border-red-500' : 'border-gray-300'
-                        } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
+                      className={`w-full border ${
+                        errors.pricePacket ? 'border-red-500' : 'border-gray-300'
+                      } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
                       name="pricePacket"
@@ -114,7 +161,9 @@ const ButtonAddService: React.FC = () => {
                 <div>
                   <label
                     htmlFor="description"
-                    className={`block text-sm font-medium mb-1 ${errors.description ? 'text-red-600' : ''}`}
+                    className={`block text-sm font-medium mb-1 ${
+                      errors.description ? 'text-red-600' : ''
+                    }`}
                   >
                     Mô tả
                   </label>
@@ -124,8 +173,9 @@ const ButtonAddService: React.FC = () => {
                     name="description"
                     placeholder="Nhập mô tả của bạn"
                     rows={5}
-                    className={`w-full border ${errors.description ? 'border-red-500' : 'border-gray-300'
-                      } rounded-md px-3 py-2 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-400`}
+                    className={`w-full border ${
+                      errors.description ? 'border-red-500' : 'border-gray-300'
+                    } rounded-md px-3 py-2 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-400`}
                   />
                   <ErrorMessage
                     name="description"

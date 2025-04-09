@@ -19,15 +19,22 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await axios.get<Image[]>(API_Home);
-                setDataimg(response.data);
-            } catch (error) {
-                console.error("Lỗi khi lấy dữ liệu:", error);
-            }
+          try {
+            const response = await axios.get(API_Home);
+      
+            const mappedData = response.data.img.map((url: string, index: number) => ({
+              id: index.toString(),
+              img: url
+            }));
+      
+            setDataimg(mappedData);
+          } catch (error) {
+            console.error("Lỗi khi lấy dữ liệu:", error);
+          }
         };
         fetchData();
-    }, []);
+      }, []);
+      
 
     useEffect(() => {
         const interval = setInterval(() => {

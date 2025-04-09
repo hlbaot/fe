@@ -34,9 +34,12 @@ export default function ModalPackage({ open, handleClose, data }: ModalPackagePr
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{
+        zIndex: 1000,
+      }}
     >
-      <Box sx={style}>
-        <h1 className="text-2xl font-semibold mb-4 text-gray-800">Thông tin gói</h1>
+      <Box sx={{ ...style, zIndex: 1001 }}>
+        <h1 className="text-2xl text-center font-semibold mb-4 text-gray-800">Thông tin gói</h1>
         <div className="space-y-2 text-base text-gray-700 mb-6">
           <p><strong>Tên gói:</strong> {data.namePacket}</p>
           <p><strong>Giá:</strong> {data.pricePacket.toLocaleString()} VNĐ</p>
@@ -44,10 +47,13 @@ export default function ModalPackage({ open, handleClose, data }: ModalPackagePr
         </div>
 
         <div className="flex flex-wrap gap-4 justify-start">
-          <ImageUploadBox />
-          <ImageUploadBox />
-          <ImageUploadBox />
+          <div className="flex flex-wrap gap-4 justify-start">
+            <ImageUploadBox index={0} packageId={data.id} />
+            <ImageUploadBox index={1} packageId={data.id} />
+            <ImageUploadBox index={2} packageId={data.id} />
+          </div>
         </div>
+
       </Box>
     </Modal>
   );

@@ -14,8 +14,9 @@ const ButtonAddImg: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'img_manage_home');
-    formData.append("cloud_name", "djpujlimr");
+    formData.append('upload_preset', 'manager_img');
+    // formData.append("cloud_name", "djpujlimr");
+    formData.append('folder', 'home');
     try {
       const res = await axios.post(
         API_HOME_CLOUD,

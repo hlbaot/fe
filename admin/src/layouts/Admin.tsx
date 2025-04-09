@@ -15,11 +15,11 @@ const Admin: React.FC = () => {
       </div>
       <div className="main">
         <Routes>
-          <Route path="/" element={<ManagerHome />} />
-          <Route path="/home" element={<ManagerHome />} />
-          <Route path="/client" element={<ManagerClient />} />
-          <Route path="/service" element={<ManagerService />} />
-          <Route path="/feedback" element={<ManagerFeedback />} />
+          <Route path="/admin" element={<ManagerHome />} />
+          <Route path="/admin/home" element={<ManagerHome />} />
+          <Route path="/admin/client" element={<ManagerClient />} />
+          <Route path="/admin/service" element={<ManagerService />} />
+          <Route path="/admin/feedback" element={<ManagerFeedback />} />
         </Routes>
       </div>
     </div>

@@ -16,22 +16,22 @@ const Navbar: React.FC = () => {
 
       </div>
       <ul>
-        <Link to="/home">
+        <Link to="/admin/home">
           <li>
             Quản lí home
           </li>
         </Link>
-        <Link to="/client">
+        <Link to="/admin/client">
           <li>
             Quản lí khách hàng
           </li>
         </Link>
-        <Link to="/service">
+        <Link to="/admin/service">
           <li>
             Quản lí gói dịch vụ
           </li>
         </Link>
-        <Link to="/feedback">
+        <Link to="/admin/feedback">
           <li>
             Quản lí đánh giá
           </li>
