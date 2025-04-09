@@ -3,7 +3,7 @@
     class SlideController{
         async created(req, res){
             try {
-                // console.log(req.body);
+                // console.log(req.body.img);
                 
                 // const {img} = req.body
                 const new_slide = await SlideService.createdSlide(req.body.img);

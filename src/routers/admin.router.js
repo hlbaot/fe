@@ -31,7 +31,7 @@ router.delete("/comment/:id", authenticate, checkAdmin, deleteComment);
 
 
 //Slide Router
-router.post("/createSlide", authenticate, checkAdmin, created);
+router.post("/createSlide", authenticate, created);
 
 
 module.exports = router;

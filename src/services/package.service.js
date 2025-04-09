@@ -17,7 +17,12 @@ class PackageService {
 
   static async getAllPackages() {
     try {
-      const packages = await Packages.findAll({attributes: ['name', 'price', 'description']});
+      Packages.hasMany(Product, { foreignKey: 'package_id' });
+      Product.belongsTo(Packages, { foreignKey: 'package_id' });
+      const packages = await Packages.findAll({attributes: ['id','name', 'price', 'description'], include: [{
+        model: Product,
+        attributes: ["img"]
+      }]});
       return packages.map((pkg) => new PackageDTO(pkg));
     } catch (error) {
       throw new Error(error.message);

@@ -8,7 +8,7 @@ const {getSlide} = require('../controllers/slides.controller')
 //Package router
 // router.get("/packages", PackageController.se);
 router.get("/package/:id", PackageController.getPackageById);
-
+router.get("/packageAll", PackageController.getAllPackages);    
 //Booking router
 router.post("/:package_id", createBooking);
 
