@@ -29,11 +29,6 @@ function App() {
         />
 
         <Route
-          path="/admin"
-          element={<Navigate to="/admin/home" />}
-        />
-
-        <Route
           path="*"
           element={<Navigate to={isLoggedIn ? "/admin/home" : "/login"} />}
         />
