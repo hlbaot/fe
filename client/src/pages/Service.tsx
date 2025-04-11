@@ -10,7 +10,7 @@ import API_Service from "../api/service";
 
 
 interface Item {
-  id: string;
+  id: number;
   images: string[];
   title: string;
   description: string;
@@ -59,32 +59,32 @@ const Service: React.FC = () => {
         </div>
 
         <Carousel data-bs-theme="dark" className="w-full h-[80vh] bg-black flex items-center justify-center relative">
-          {carouselData.map((item, index) => (
-            <Carousel.Item key={index} className="flex justify-center items-center">
+          {carouselData.map((item) => (
+            <Carousel.Item key={item.id} className="flex justify-center items-center">
               <div className="flex flex-col md:flex-row w-full max-w-7xl mx-auto px-[4rem]">
                 <div className="left flex flex-col md:flex-row justify-center items-center gap-4 w-full md:w-1/2">
                   <div className="flex flex-col md:flex-row items-center gap-4">
-                    {item.images.length > 1 && (
+                    {item.images?.length > 1 && (
                       <img
                         className="h-[230px] w-[160px] object-cover rounded-lg md:rounded-none hidden md:block"
                         src={item.images[1]}
-                        alt={`Slide ${index + 1} - Image 2`}
+                        alt={`Slide ${item.id + 1} - Image 2`}
                         data-aos="fade-up"
                       />
                     )}
-                    {item.images.length > 0 && (
+                    {item.images?.length > 0 && (
                       <img
                         className="h-[350px] w-[250px] object-cover rounded-lg md:rounded-none"
                         src={item.images[0]}
-                        alt={`Slide ${index + 1} - Image 1`}
+                        alt={`Slide ${item.id + 1} - Image 1`}
                         data-aos="fade-down"
                       />
                     )}
-                    {item.images.length > 2 && (
+                    {item.images?.length > 2 && (
                       <img
                         className="h-[230px] w-[160px] object-cover rounded-lg md:rounded-none hidden md:block"
                         src={item.images[2]}
-                        alt={`Slide ${index + 1} - Image 3`}
+                        alt={`Slide ${item.id + 1} - Image 3`}
                         data-aos="fade-up"
                       />
                     )}

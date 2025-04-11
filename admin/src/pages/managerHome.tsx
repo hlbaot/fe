@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import ButtonAdd from '../ui/btnAddImg';
 import Swal from 'sweetalert2';
 import '../assets/styles/managerHome.scss';
 import ButtonAddImg from '../ui/btnAddImg';

@@ -1,11 +1,12 @@
 import React from 'react'
 import '../assets/styles/admin.scss'
 import Navbar from '../component/navbar'
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import ManagerHome from '../pages/managerHome';
 import ManagerClient from '../pages/managerClient';
 import ManagerService from '../pages/managerService';
 import ManagerFeedback from '../pages/managerFeedback';
+
 
 const Admin: React.FC = () => {
   return (
@@ -15,7 +16,6 @@ const Admin: React.FC = () => {
       </div>
       <div className="main">
         <Routes>
-          <Route path="/admin" element={<ManagerHome />} />
           <Route path="/admin/home" element={<ManagerHome />} />
           <Route path="/admin/client" element={<ManagerClient />} />
           <Route path="/admin/service" element={<ManagerService />} />

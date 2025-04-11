@@ -18,11 +18,28 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/admin" /> : <SignIn onLogin={handleLogin} />} />
-        <Route path="/admin" element={isLoggedIn ? <Admin /> : <Navigate to="/login" />} />
-        <Route path="*" element={<Navigate to={isLoggedIn ? "/admin" : "/login"} />} />
+        <Route
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/admin/home" /> : <SignIn onLogin={handleLogin} />}
+        />
+
+        <Route
+          path="/admin/*"
+          element={isLoggedIn ? <Admin /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/admin"
+          element={<Navigate to="/admin/home" />}
+        />
+
+        <Route
+          path="*"
+          element={<Navigate to={isLoggedIn ? "/admin/home" : "/login"} />}
+        />
       </Routes>
-      {/* <Admin/> */}
+
+      {/* <Admin /> */}
     </BrowserRouter>
   );
 }

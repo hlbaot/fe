@@ -4,12 +4,13 @@ import Swal from 'sweetalert2';
 import '../assets/styles/Signin.scss';
 import { Formik, Form, Field } from 'formik';
 import API_Signin from '../api/signin';
-
+import { useNavigate } from 'react-router-dom';
 interface SigninProps {
   onLogin: () => void; 
 }
 
 const Signin: React.FC<SigninProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
   const onSubmit = async (values: { username: string; password: string; }, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     try {
       const res = await axios.post(API_Signin, {
@@ -28,7 +29,7 @@ const Signin: React.FC<SigninProps> = ({ onLogin }) => {
           timer: 1500,
           showConfirmButton: false,
         });
-
+        navigate('/admin/home');
       } else {
         Swal.fire({
           icon: 'error',

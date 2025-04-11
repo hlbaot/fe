@@ -13,7 +13,7 @@ interface ServicePackage {
 }
 
 function ManagerService() {
-  const [data, setData] = useState<ServicePackage[]>([]); // Initialize with an empty array
+  const [data, setData] = useState<ServicePackage[]>([]); 
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editData, setEditData] = useState<ServicePackage>({
     id: 0,
@@ -24,7 +24,6 @@ function ManagerService() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<ServicePackage | null>(null);
 
-  // Function to handle adding a new service package (called from ButtonAddService)
   const handleAddService = (newService: ServicePackage) => {
     setData((prevData) => [...prevData, newService]);
   };
@@ -140,7 +139,7 @@ function ManagerService() {
           <tbody>
             {data.length === 0 ? (
               <tr>
-                <td colSpan={4} className="border px-4 py-2 text-center text-gray-500">
+                 <td colSpan={4} className="text-center py-4">
                   Chưa có dịch vụ nào
                 </td>
               </tr>

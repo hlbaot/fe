@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
 });
 
 interface ButtonAddServiceProps {
-  onAddService: (newService: Values & { id: number }) => void; // Callback to pass new service to parent
+  onAddService: (newService: Values & { id: number }) => void; 
 }
 
 const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => {
