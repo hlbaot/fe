@@ -16,6 +16,7 @@ const Admin: React.FC = () => {
       </div>
       <div className="main">
         <Routes>
+          <Route path="/" element={<ManagerHome />} />
           <Route path="/admin/home" element={<ManagerHome />} />
           <Route path="/admin/client" element={<ManagerClient />} />
           <Route path="/admin/service" element={<ManagerService />} />

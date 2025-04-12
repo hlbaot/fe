@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Swal from 'sweetalert2'
-import axios from 'axios'
-import '../assets/styles/managerFeedback.scss'
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import '../assets/styles/managerFeedback.scss';
+
 interface Feedback {
   email: string;
   stars: string;
@@ -14,7 +15,13 @@ const ManagerFeedback: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('api.yourbackend.com/feedback');
+        const token = sessionStorage.getItem('token');
+        const response = await axios.get('https://api.yourbackend.com/feedback', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
         if (Array.isArray(response.data)) {
           setData(response.data);
         } else {
@@ -29,7 +36,6 @@ const ManagerFeedback: React.FC = () => {
     fetchData();
   }, []);
 
-
   const handleDelete = (email: string) => {
     Swal.fire({
       title: "Bạn chắc chắn muốn xóa?",
@@ -42,7 +48,11 @@ const ManagerFeedback: React.FC = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete('API_DELETE', {
+          const token = sessionStorage.getItem('token');
+          await axios.delete('https://api.yourbackend.com/feedback', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
             data: { email }
           });
 
@@ -106,7 +116,6 @@ const ManagerFeedback: React.FC = () => {
               ))
             )}
           </tbody>
-
         </table>
       </div>
     </div>

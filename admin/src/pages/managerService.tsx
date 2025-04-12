@@ -13,7 +13,7 @@ interface ServicePackage {
 }
 
 function ManagerService() {
-  const [data, setData] = useState<ServicePackage[]>([]); 
+  const [data, setData] = useState<ServicePackage[]>([]);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editData, setEditData] = useState<ServicePackage>({
     id: 0,
@@ -23,6 +23,8 @@ function ManagerService() {
   });
   const [openModal, setOpenModal] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<ServicePackage | null>(null);
+
+  const getToken = () => sessionStorage.getItem('token'); // Hàm lấy token từ sessionStorage
 
   const handleAddService = (newService: ServicePackage) => {
     setData((prevData) => [...prevData, newService]);
@@ -40,7 +42,11 @@ function ManagerService() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:3000/service-packages/${id}`);
+          await axios.delete(`http://localhost:3000/service-packages/${id}`, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,
+            },
+          });
 
           setData((prevData) => prevData.filter((item) => item.id !== id));
 
@@ -82,24 +88,31 @@ function ManagerService() {
     try {
       const response = await axios.patch(
         `http://localhost:3000/service-packages/${editData.id}`,
-        editData
+        editData,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
       );
 
-      const newData = [...data];
-      const dataIndex = newData.findIndex((item) => item.id === editData.id);
-      if (dataIndex !== -1) {
-        newData[dataIndex] = editData;
-        setData(newData);
-      }
+      if (response.status === 200) {
+        const newData = [...data];
+        const dataIndex = newData.findIndex((item) => item.id === editData.id);
+        if (dataIndex !== -1) {
+          newData[dataIndex] = editData;
+          setData(newData);
+        }
 
-      Swal.fire({
-        title: 'Lưu thành công!',
-        text: 'Gói dịch vụ đã được cập nhật.',
-        icon: 'success',
-        timer: 1500,
-        confirmButtonText: 'OK',
-      });
-      setEditingIndex(null);
+        Swal.fire({
+          title: 'Lưu thành công!',
+          text: 'Gói dịch vụ đã được cập nhật.',
+          icon: 'success',
+          timer: 1500,
+          confirmButtonText: 'OK',
+        });
+        setEditingIndex(null);
+      }
     } catch (error) {
       console.error('Lỗi khi lưu gói dịch vụ:', error);
       Swal.fire({
@@ -139,7 +152,7 @@ function ManagerService() {
           <tbody>
             {data.length === 0 ? (
               <tr>
-                 <td colSpan={4} className="text-center py-4">
+                <td colSpan={4} className="text-center py-4">
                   Chưa có dịch vụ nào
                 </td>
               </tr>

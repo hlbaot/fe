@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
 });
 
 interface ButtonAddServiceProps {
-  onAddService: (newService: Values & { id: number }) => void; 
+  onAddService: (newService: Values & { id: number }) => void;
 }
 
 const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => {
@@ -49,7 +49,14 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
     { setSubmitting, resetForm }: FormikHelpers<Values>
   ) => {
     try {
-      const response = await axios.post('http://localhost:3000/service-packages', values);
+      const token = sessionStorage.getItem('token');
+      const response = await axios.post('http://localhost:3000/service-packages', values,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+      );
 
       const newService = response.data;
 
@@ -111,9 +118,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                   <div className="w-1/2">
                     <label
                       htmlFor="namePacket"
-                      className={`block text-sm font-medium mb-1 ${
-                        errors.namePacket ? 'text-red-600' : ''
-                      }`}
+                      className={`block text-sm font-medium mb-1 ${errors.namePacket ? 'text-red-600' : ''
+                        }`}
                     >
                       Tên gói
                     </label>
@@ -121,9 +127,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                       id="namePacket"
                       name="namePacket"
                       placeholder="Nhập tên gói"
-                      className={`w-full border ${
-                        errors.namePacket ? 'border-red-500' : 'border-gray-300'
-                      } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
+                      className={`w-full border ${errors.namePacket ? 'border-red-500' : 'border-gray-300'
+                        } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
                       name="namePacket"
@@ -135,9 +140,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                   <div className="w-1/2">
                     <label
                       htmlFor="pricePacket"
-                      className={`block text-sm font-medium mb-1 ${
-                        errors.pricePacket ? 'text-red-600' : ''
-                      }`}
+                      className={`block text-sm font-medium mb-1 ${errors.pricePacket ? 'text-red-600' : ''
+                        }`}
                     >
                       Giá gói
                     </label>
@@ -146,9 +150,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                       name="pricePacket"
                       placeholder="0"
                       type="number"
-                      className={`w-full border ${
-                        errors.pricePacket ? 'border-red-500' : 'border-gray-300'
-                      } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
+                      className={`w-full border ${errors.pricePacket ? 'border-red-500' : 'border-gray-300'
+                        } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
                       name="pricePacket"
@@ -161,9 +164,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                 <div>
                   <label
                     htmlFor="description"
-                    className={`block text-sm font-medium mb-1 ${
-                      errors.description ? 'text-red-600' : ''
-                    }`}
+                    className={`block text-sm font-medium mb-1 ${errors.description ? 'text-red-600' : ''
+                      }`}
                   >
                     Mô tả
                   </label>
@@ -173,9 +175,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                     name="description"
                     placeholder="Nhập mô tả của bạn"
                     rows={5}
-                    className={`w-full border ${
-                      errors.description ? 'border-red-500' : 'border-gray-300'
-                    } rounded-md px-3 py-2 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-400`}
+                    className={`w-full border ${errors.description ? 'border-red-500' : 'border-gray-300'
+                      } rounded-md px-3 py-2 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-400`}
                   />
                   <ErrorMessage
                     name="description"

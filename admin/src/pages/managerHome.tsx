@@ -39,14 +39,20 @@ const ManagerHome: React.FC = () => {
       confirmButtonText: "Xóa!",
       cancelButtonText: "Hủy"
     });
-
+  
     if (result.isConfirmed) {
       try {
-        await axios.post('http://localhost:3001/delete-image', { public_id });
-
+        const token = sessionStorage.getItem('token');
+        await axios.delete('http://localhost:3001/delete-image', {
+          data: { public_id },
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+  
         const updatedImages = images.filter(img => img.public_id !== public_id);
         setImages(updatedImages);
-
+  
         localStorage.setItem('images', JSON.stringify(updatedImages));
         Swal.fire({
           title: 'Xóa ảnh thành công!',
@@ -64,6 +70,7 @@ const ManagerHome: React.FC = () => {
       }
     }
   };
+  
 
 
   return (
