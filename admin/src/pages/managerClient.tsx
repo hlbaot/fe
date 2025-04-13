@@ -111,8 +111,17 @@ function ManagerClient() {
                   <td className="border px-4 py-2">{item.address}</td>
                   <td className="border px-4 py-2">{item.price} VNĐ</td>
                   <td className="border text-yellow-500 px-4 py-2">chờ duyệt</td>
-                  <td className="border text-yellow-500 px-4 py-2">
-                    
+                  <td className="border text-yellow-500 px-4 py-2 flex gap-2">
+                    <button
+                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm"
+                    >
+                      Duyệt
+                    </button>
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                    >
+                      Xóa
+                    </button>
                   </td>
                 </tr>
               ))
