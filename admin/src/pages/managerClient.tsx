@@ -3,6 +3,13 @@ import '../assets/styles/managerClient.scss';
 import Swal from "sweetalert2";
 import axios from "axios";
 
+interface ServicePackage {
+  id: number;
+  namePackage: string;
+  pricePackage: number;
+  description: string;
+}
+
 interface Booking {
   name: string;
   email: string;
@@ -11,12 +18,13 @@ interface Booking {
   typePackage: string;
   address: string;
   price: number;
-  status?: string; 
+  status?: string;
 }
 
 const ManagerClient: React.FC = () => {
   const [dataaa, setData] = useState<Booking[]>([]);
   const [filteredData, setFilteredData] = useState<Booking[]>(dataaa);
+  const [packages, setPackages] = useState<ServicePackage[]>([]); // State lưu danh sách gói dịch vụ
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,14 +39,23 @@ const ManagerClient: React.FC = () => {
           });
           return;
         }
-        // lấy dữ liệu về
-        const response = await axios.get('https://api.yourbackend.com/bookings', {
+        
+        // Lấy dữ liệu về các booking
+        const responseBookings = await axios.get('https://api.yourbackend.com/bookings', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        setData(response.data);
-        setFilteredData(response.data);
+        setData(responseBookings.data);
+        setFilteredData(responseBookings.data);
+
+        // Lấy dữ liệu về các gói dịch vụ
+        const responsePackages = await axios.get('https://api.yourbackend.com/packages', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setPackages(responsePackages.data); 
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error);
         Swal.fire({
@@ -54,7 +71,6 @@ const ManagerClient: React.FC = () => {
     fetchData();
   }, []);
 
-  //xóa 
   const handleDelete = (email: string) => {
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -107,7 +123,7 @@ const ManagerClient: React.FC = () => {
       }
     });
   }
-  // duyệt
+
   const handleApprove = async (email: string) => {
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -124,7 +140,7 @@ const ManagerClient: React.FC = () => {
       // Cập nhật trạng thái "Đã duyệt"
       await axios.patch('https://api.yourbackend.com/bookings', {
         email,
-        status: 'Đã duyệt' // Cập nhật trạng thái
+        status: 'Đã duyệt' 
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -184,8 +200,11 @@ const ManagerClient: React.FC = () => {
                 }}
               >
                 <option value="">Tất cả gói dịch vụ</option>
-                <option value="Gói Cặp Đôi">Gói Cặp Đôi</option>
-                <option value="Gói Đơn">Gói Đơn</option>
+                {packages.map((pkg, index) => (
+                  <option key={pkg.id} value={pkg.namePackage}>
+                    {pkg.namePackage} - {pkg.pricePackage} VNĐ
+                  </option>
+                ))}
               </select>
             </div>
           </div>
