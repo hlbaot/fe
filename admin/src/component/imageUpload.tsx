@@ -107,15 +107,15 @@ function ImageUploadBox({ index, packageId }: Props) {
 
     if (confirm.isConfirmed) {
       try {
-        const res = await axios.post(
+        const res = await axios.delete(
           "/api/delete-image",
-          {
-            imageUrl: image,
-            packageId,
-          },
           {
             headers: {
               Authorization: `Bearer ${token}`,
+            },
+            data: {
+              imageUrl: image,
+              packageId,
             },
           }
         );
@@ -147,6 +147,7 @@ function ImageUploadBox({ index, packageId }: Props) {
       }
     }
   };
+
 
   return (
     <div className="bg-white rounded-xl shadow-md w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 flex items-center justify-center relative overflow-hidden transition-all duration-300">

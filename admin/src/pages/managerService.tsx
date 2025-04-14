@@ -24,7 +24,7 @@ function ManagerService() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<ServicePackage | null>(null);
 
-  const getToken = () => sessionStorage.getItem('token'); // Hàm lấy token từ sessionStorage
+  const getToken = () => sessionStorage.getItem('token');
 
   const handleAddService = (newService: ServicePackage) => {
     setData((prevData) => [...prevData, newService]);
