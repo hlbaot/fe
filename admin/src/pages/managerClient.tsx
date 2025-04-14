@@ -22,9 +22,14 @@ interface Booking {
 }
 
 const ManagerClient: React.FC = () => {
-  const [dataaa, setData] = useState<Booking[]>([]);
-  const [filteredData, setFilteredData] = useState<Booking[]>(dataaa);
-  const [packages, setPackages] = useState<ServicePackage[]>([]); // State lưu danh sách gói dịch vụ
+  const [data, setData] = useState<Booking[]>([]);
+  const [filteredData, setFilteredData] = useState<Booking[]>([]);
+  const [packages, setPackages] = useState<ServicePackage[]>([]);
+
+  // Đồng bộ filteredData khi data thay đổi
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +52,6 @@ const ManagerClient: React.FC = () => {
           }
         });
         setData(responseBookings.data);
-        setFilteredData(responseBookings.data);
 
         // Lấy dữ liệu về các gói dịch vụ
         const responsePackages = await axios.get('https://api.yourbackend.com/packages', {
@@ -184,7 +188,7 @@ const ManagerClient: React.FC = () => {
               placeholder="Tìm kiếm theo tên khách hàng"
               onChange={(e) => {
                 const searchTerm = e.target.value.toLowerCase();
-                setFilteredData(dataaa.filter(item => item.name.toLowerCase().includes(searchTerm)));
+                setFilteredData(data.filter(item => item.name.toLowerCase().includes(searchTerm)));
               }}
             />
             <div className="px-2 bg-white rounded-xl">
@@ -193,9 +197,9 @@ const ManagerClient: React.FC = () => {
                 onChange={(e) => {
                   const packageFilter = e.target.value;
                   if (packageFilter) {
-                    setFilteredData(dataaa.filter(item => item.typePackage === packageFilter));
+                    setFilteredData(data.filter(item => item.typePackage === packageFilter));
                   } else {
-                    setFilteredData(dataaa); 
+                    setFilteredData(data);
                   }
                 }}
               >

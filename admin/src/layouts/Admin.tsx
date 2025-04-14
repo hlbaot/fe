@@ -1,5 +1,7 @@
 import React from 'react'
 import '../assets/styles/admin.scss'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../component/navbar'
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import ManagerHome from '../pages/managerHome';
