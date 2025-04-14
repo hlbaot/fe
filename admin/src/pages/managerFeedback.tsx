@@ -14,8 +14,19 @@ const ManagerFeedback: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = sessionStorage.getItem('token');
+
+      if (!token) {
+        Swal.fire({
+          title: 'Lỗi!',
+          text: 'Bạn chưa đăng nhập hoặc phiên đăng nhập đã hết hạn.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+
       try {
-        const token = sessionStorage.getItem('token');
         const response = await axios.get('https://api.yourbackend.com/feedback', {
           headers: {
             Authorization: `Bearer ${token}`
@@ -37,6 +48,18 @@ const ManagerFeedback: React.FC = () => {
   }, []);
 
   const handleDelete = (email: string) => {
+    const token = sessionStorage.getItem('token');
+
+    if (!token) {
+      Swal.fire({
+        title: 'Lỗi!',
+        text: 'Bạn chưa đăng nhập hoặc phiên đăng nhập đã hết hạn.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+
     Swal.fire({
       title: "Bạn chắc chắn muốn xóa?",
       icon: "warning",
@@ -48,7 +71,6 @@ const ManagerFeedback: React.FC = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const token = sessionStorage.getItem('token');
           await axios.delete('https://api.yourbackend.com/feedback', {
             headers: {
               Authorization: `Bearer ${token}`
@@ -78,6 +100,7 @@ const ManagerFeedback: React.FC = () => {
       }
     });
   };
+
 
   return (
     <div>

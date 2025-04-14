@@ -8,8 +8,8 @@ type ModalPackageProps = {
   handleClose: () => void;
   data: {
     id: number;
-    namePacket: string;
-    pricePacket: number;
+    namePackage: string;
+    pricePackage: number;
     description: string;
   };
 };
@@ -41,8 +41,8 @@ export default function ModalPackage({ open, handleClose, data }: ModalPackagePr
       <Box sx={{ ...style, zIndex: 1001 }}>
         <h1 className="text-2xl text-center font-semibold mb-4 text-gray-800">Thông tin gói</h1>
         <div className="space-y-2 text-base text-gray-700 mb-6">
-          <p><strong>Tên gói:</strong> {data.namePacket}</p>
-          <p><strong>Giá:</strong> {data.pricePacket.toLocaleString()} VNĐ</p>
+          <p><strong>Tên gói:</strong> {data.namePackage}</p>
+          <p><strong>Giá:</strong> {data.pricePackage.toLocaleString()} VNĐ</p>
           <p><strong>Mô tả:</strong> {data.description}</p>
         </div>
 

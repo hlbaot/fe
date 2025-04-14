@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import axios from 'axios';
+import Swal from "sweetalert2";
 import API_HOME_CLOUD from '../api/upImgCloud';
 interface ButtonAddProps {
   onImageUpload: (img: { url: string; public_id: string }) => void;
@@ -11,7 +12,15 @@ const ButtonAddImg: React.FC<ButtonAddProps> = ({ onImageUpload }) => {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      Swal.fire({
+        title: "Lỗi",
+        text: "Bạn chưa đăng nhập hoặc phiên làm việc đã hết hạn!",
+        icon: "error",
+      });
+      return;
+    }
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'manager_img');

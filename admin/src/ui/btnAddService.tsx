@@ -22,14 +22,14 @@ const styleModal = {
 };
 
 interface Values {
-  namePacket: string;
-  pricePacket: number;
+  namePackage: string;
+  pricePackage: number;
   description: string;
 }
 
 const validationSchema = Yup.object({
-  namePacket: Yup.string().required('Tên gói là bắt buộc'),
-  pricePacket: Yup.number()
+  namePackage: Yup.string().required('Tên gói là bắt buộc'),
+  pricePackage: Yup.number()
     .min(0, 'Giá gói không được âm')
     .required('Giá gói là bắt buộc'),
   description: Yup.string().required('Mô tả là bắt buộc'),
@@ -103,8 +103,8 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
           <h1 className="text-center font-bold text-xl">Nhập thông tin gói mới</h1>
           <Formik
             initialValues={{
-              namePacket: '',
-              pricePacket: 0,
+              namePackage: '',
+              pricePackage: 0,
               description: '',
             }}
             validationSchema={validationSchema}
@@ -117,21 +117,21 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
                 <div className="flex gap-4">
                   <div className="w-1/2">
                     <label
-                      htmlFor="namePacket"
-                      className={`block text-sm font-medium mb-1 ${errors.namePacket ? 'text-red-600' : ''
+                      htmlFor="namePackage"
+                      className={`block text-sm font-medium mb-1 ${errors.namePackage ? 'text-red-600' : ''
                         }`}
                     >
                       Tên gói
                     </label>
                     <Field
-                      id="namePacket"
-                      name="namePacket"
+                      id="namePackage"
+                      name="namePackage"
                       placeholder="Nhập tên gói"
-                      className={`w-full border ${errors.namePacket ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full border ${errors.namePackage ? 'border-red-500' : 'border-gray-300'
                         } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
-                      name="namePacket"
+                      name="namePackage"
                       component="div"
                       className="text-red-500 text-sm mt-1"
                     />
@@ -139,22 +139,22 @@ const ButtonAddService: React.FC<ButtonAddServiceProps> = ({ onAddService }) => 
 
                   <div className="w-1/2">
                     <label
-                      htmlFor="pricePacket"
-                      className={`block text-sm font-medium mb-1 ${errors.pricePacket ? 'text-red-600' : ''
+                      htmlFor="pricePackage"
+                      className={`block text-sm font-medium mb-1 ${errors.pricePackage ? 'text-red-600' : ''
                         }`}
                     >
                       Giá gói
                     </label>
                     <Field
-                      id="pricePacket"
-                      name="pricePacket"
+                      id="pricePackage"
+                      name="pricePackage"
                       placeholder="0"
                       type="number"
-                      className={`w-full border ${errors.pricePacket ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full border ${errors.pricePackage ? 'border-red-500' : 'border-gray-300'
                         } rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400`}
                     />
                     <ErrorMessage
-                      name="pricePacket"
+                      name="pricePackage"
                       component="div"
                       className="text-red-500 text-sm mt-1"
                     />
