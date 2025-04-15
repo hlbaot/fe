@@ -1,0 +1,4 @@
+/* css swal trong imageUpload.tsx */
+.z-super {
+    z-index: 2100 !important;
+  }

@@ -101,7 +101,7 @@ function ImageUploadBox({ index, packageId }: Props) {
       confirmButtonColor: "#ef4444",
       cancelButtonColor: "#d1d5db",
       customClass: {
-        popup: "z-[1400]",
+        popup: 'z-super',
       },
     });
 
@@ -128,7 +128,7 @@ function ImageUploadBox({ index, packageId }: Props) {
             title: "Đã xóa ảnh!",
             icon: "success",
             customClass: {
-              popup: "z-[1400]",
+              popup: 'z-super',
             },
           });
         } else {
@@ -141,7 +141,7 @@ function ImageUploadBox({ index, packageId }: Props) {
           text: "Không thể xóa ảnh",
           icon: "error",
           customClass: {
-            popup: "z-[1400]",
+            popup: 'z-super',
           },
         });
       }

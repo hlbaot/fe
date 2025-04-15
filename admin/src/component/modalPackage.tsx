@@ -34,9 +34,7 @@ export default function ModalPackage({ open, handleClose, data }: ModalPackagePr
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      sx={{
-        zIndex: 1000,
-      }}
+      sx={{ zIndex: 1000 }}
     >
       <Box sx={{ ...style, zIndex: 1001 }}>
         <h1 className="text-2xl text-center font-semibold mb-4 text-gray-800">Thông tin gói</h1>
